@@ -1,12 +1,12 @@
 
 <!doctype html>
+{%load staticfiles%}
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="Debanik">
-  <meta name="generator" content="Jekyll v3.8.5">
   <title>Blogs</title>
 
   <!-- Bootstrap core CSS -->
@@ -31,14 +31,15 @@
 <body>
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="/">Debanik</a>
+      <a class="navbar-brand" href="{%url 'homepage'%}">Debanik</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
-          <a class="nav-item nav-link active" href="/blog">Blog</a>
-          <a class="nav-item nav-link" href="https://github.com/Debanik">Github</a>
+          <a class="nav-item nav-link active" href="{%url 'allblogs'%}">Blog</a>
+          <a class="nav-item nav-link" href="{% static 'resume.pdf'%}">Resume</a>
+          <a class="nav-item nav-link" href=" https://github.com/Debanik ">Github</a>
         </div>
       </div>
     </nav>
@@ -63,8 +64,11 @@
           <div style="position: center; width:348px; height: 200px; overflow:hidden">
             <img class="card-img-top" src=" {{ blog.image.url }} " />
           </div>
-          <h2>{{ blog.title }}</h2>
-          <p>{{ blog.body }}</p>
+          <a href="{% url 'individual_blog' blog.id %}" class="text-muted">
+            <h2>{{ blog.title }}</h2>
+          </a>
+          <p>{{ blog.summary }}</p>
+          <br/>
           <p class="small text-muted text-right">{{ blog.pub_date}}</p>
           <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
         </div>
